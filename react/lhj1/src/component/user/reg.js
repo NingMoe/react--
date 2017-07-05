@@ -65,9 +65,9 @@ $("html").css("font-size","62.5%");
 return (
   <div className="reg">
   	<header>
-			<a href="#">
+			<Link to="login">
 				<i className="iconfont">&#xe600;</i>
-			</a>
+			</Link>
 			注册
 			<a href="#">密码登录</a>
 		</header>

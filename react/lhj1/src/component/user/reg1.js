@@ -17,9 +17,9 @@ componentDidMount(){
 return (
   <div className="reg-next">
     <header>
-			<a href="#">
+			<Link to="reg">
 				<i className="iconfont">&#xe600;</i>
-			</a>
+			</Link>
 			注册
 			<a href="#">密码登录</a>
 		</header>

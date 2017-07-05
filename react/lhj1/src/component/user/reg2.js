@@ -1,6 +1,7 @@
 import React,{Component} from 'react' ;
 import "../static/css/reg2.css";
 import $ from "jquery";
+import {Link} from "react-router";
 class Reg2 extends Component{
  constructor(props){
 super(props)
@@ -15,9 +16,9 @@ componentDidMount(){
 return (
   <div className="reg2">
   <header>
-			<a href="#">
+			<Link to="reg1">
 				<i className="iconfont">&#xe600;</i>
-			</a>
+			</Link>
 			注册
 			<a href="#"></a>
 		</header>

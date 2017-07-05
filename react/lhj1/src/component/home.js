@@ -39,7 +39,8 @@ class Home extends Component {
          <div id='home'>
                 <div className="header-warp">
                 <div className="header">
-                    <div className="search">
+                    <Link to="search" >
+                        <div className="search">
                         <from>
                             <input type="text" placeholder="搜索商家、商品" />
                             <div className="search-title">
@@ -48,6 +49,8 @@ class Home extends Component {
                                 </div>
                         </from>
                     </div>
+                    </Link>
+                    
                 </div>
             </div>
             <div className="focus-warp">

@@ -12,6 +12,7 @@ import Reg from "./component/user/reg";
 import Reg1 from "./component/user/reg1";
 import Reg2 from "./component/user/reg2";
 import Find from './component/find';
+import Search from './component/search';
 import Home from "./component/home";
 import Seller from "./component/home/seller";
 ReactDOM.render(
@@ -40,6 +41,7 @@ ReactDOM.render(
         <Route path="reg2" component={Reg2}></Route>
         <Route path="user/reg2" component={Reg2}></Route>
           <Route path="seller" component={Seller}></Route>
+           <Route path="search" component={Search}></Route>
     </Route>
 </Router>, 
 document.getElementById('root')

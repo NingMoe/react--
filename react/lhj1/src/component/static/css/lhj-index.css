@@ -82,7 +82,7 @@ html {
   position: relative;
 }
 .header .search from input {
-      padding: 0 .85rem;
+      padding: 0 1.1rem;
       font-size: .1rem;
   /*padding: 0 .3rem;*/
   border-radius: .96rem;
