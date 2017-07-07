@@ -62,7 +62,7 @@ exports.findMore=function (collectionName, json, skipnumber, limit,callback) {
 
 
         //var userRel=db.collection(collectionName).find(json);
-        var userRel=db.collection(collectionName).find(json).limit(limit).skip(skipnumber);;
+        var userRel=db.collection(collectionName).find(json).limit(limit).skip(skipnumber);
 
         var result=[];
         userRel.each(function(err, doc) {

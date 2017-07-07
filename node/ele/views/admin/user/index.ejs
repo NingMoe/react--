@@ -71,11 +71,21 @@
             </div>
             <div class="pagination">
                 <ul>
+                    <%if(page<=1){%>
+                     <li><a href="<%=host%>admin/user?page=1">Prev</a></li>
+                    <%}else{%>
+                        <li><a href="<%=host%>admin/user?page=<%=page-1%>">Prev</a></li>
+                   <%}%>
                     <%for(var k=1;k<allpage;k++){%>
-                        <li><a href="<%=host%>admin/user?page=<%=k-1%>">Prev</a></li>
+
                         <li><a href="<%=host%>admin/user?page=<%=k%>"><%=k%></a></li>
-                        <li><a href="<%=host%>admin/user?page=<%=k+1%>">Next</a></li>
+
                     <%}%>
+                    <%if(page>=allpage-1){%>
+                        <li><a href="<%=host%>admin/user?page=<%=allpage-1%>">Next</a></li>
+                    <%}else{%>
+                    <li><a href="<%=host%>admin/user?page=<%=page+1%>">Next</a></li>
+                   <%}%>
                 </ul>
             </div>
 
@@ -92,9 +102,6 @@
                     <button class="btn btn-danger" data-dismiss="modal">Delete</button>
                 </div>
             </div>
-
-
-
             <footer>
                 <hr>
 

@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
     })
     var step = page *5;
     var allpage =Math.ceil(datalength/5);
-    console.log(allpage)
+    page = parseInt(page);
     DB.findMore('user',{},step,5,function(err,data){
         if(err){
             console.log(err)
@@ -30,7 +30,8 @@ router.get('/', function(req, res, next) {
         res.render('admin/user/index', {
             host:HOST,
             data:data,
-            allpage:allpage
+            allpage:allpage,
+            page:page
         });
     })
 
@@ -85,11 +86,11 @@ router.get('/del', function(req, res, next) {
        if(err){
            console.log('数据删除失败')
        }else{
-           res.render('admin/user/delete',{
-               host:HOST
-           })
+           // res.render('admin/user/delete',{
+           //     host:HOST
+           // })
            // console.log("数据删除成功")
-           //res.redirect('/admin/user')
+           res.redirect('/admin/user')
        }
    })
 });
