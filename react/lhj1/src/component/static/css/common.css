@@ -2,6 +2,93 @@
   font-size: 625%;
   common
 }*/
+/*search*/
+.App .search-content a{
+margin: .03rem 0.15rem;
+}
+.App .search-content{
+width: 100%;
+display: -ms-flexbox;
+display: flex;
+-ms-flex-align: center;
+align-items: center;
+
+background: #fff;
+flex-wrap: wrap;
+height: auto;
+/* justify-content: space-between; */
+}
+.ant-notification{
+top: 50%!important;
+}
+.ant-btn-primary{
+width: .6rem;
+position: absolute;
+right: 0;
+opacity: 0;
+overflow: hidden;
+height: 100%;
+}
+.header .search input{
+padding: 0 0.4rem;
+}
+/*订单*/
+
+.content  .content_orders ul li p span{
+margin-left: .03rem;
+color: #f60;
+font-size: .16rem;
+}
+.content .content_orders ul li h4{
+height:auto;
+width:1.6rem;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+.ant-card-body{
+height:70%;
+display: flex;
+align-items: center;
+justify-content: space-around;
+padding: 0 .1rem;
+}
+.content_orders ul li .ant-card .ant-card-body p{
+margin-top:0;
+padding-left:0;
+color: #f60;
+font-size: .16rem;
+position: relative;
+font-weight: 900;
+}
+.content ul li{
+height:.4rem;
+}
+.content .content_orders ul li{
+height: 1.7rem;
+}
+.ant-card-body{
+
+}
+.ant-card-bordered{
+width:100%;
+margin-bottom:.1rem;
+}
+/*订单*/
+/*登录注册*/
+.phone-reg{
+
+}
+.nologin h4 a{
+color:#fff;
+}
+.user_info,.u_header{
+background-image: -webkit-linear-gradient(left, #0af, #0085ff);
+background-image: -webkit-gradient(linear, left top, right top, from(#0af), to(#0085ff));
+background-image: -o-linear-gradient(left, #0af, #0085ff);
+background-image: linear-gradient(90deg, #0af, #0085ff);
+}
+/*登录注册*/
 #main{
 max-height: 5.67rem;
 overflow: auto;
@@ -96,6 +183,9 @@ font-size:.05rem;
 padding-top:.04rem;
 }
 /*shoping开始*/
+.carts{
+bottom:.55rem;
+}
 .sellers .goods-footer .goods-cart-active{
 background:#3190e8;
 }
@@ -114,6 +204,8 @@ display:none;
 padding: 0 .15rem;
 font-size: .1rem;
 font-weight: 900;
+width: 0.4rem;
+text-align: center;
 }
 /*loading*/
 .Loading{

@@ -12,24 +12,27 @@ router.use(function(req, res, next){
 var _length="";
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    var listLenght=10
     db.Find("orders",{},function(err,data){
 
         _length=data.length
     })
     var count=""
-    console.log(req.query.count);
+
     if(req.query.count==undefined){
-        count=1;
+        count=0;
     }else{
-        parseInt(req.query.count)-1;
+        count=parseInt(req.query.count)-1;
     }
-    count1=count*5;
-    db.findMore("orders",{},count1,5,function(err,data){
+    count1=count*listLenght;
+    console.log(req.query.count);
+    db.findMore("orders",{},count1,listLenght,function(err,data){
         // console.log(Math.ceil(_length/5));
+        // console.log(data);
         res.render("./admin/order/index",{
             host:HOST,
             data:data,
-            alength:Math.ceil(_length/5),
+            alength:Math.ceil(_length/listLenght),
             count:count
         })
     })

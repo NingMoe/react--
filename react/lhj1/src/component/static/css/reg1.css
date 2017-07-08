@@ -1,45 +1,43 @@
-/*html{
+html{
     font-size:62.5%;
-	reg1
-}*/
-#thirdlogin .loginchannel>ul>li{
-		    height: 7.3rem!important;
 }
 body{
-    /*font-size:1.2rem;*/
+    font-size:1.2rem;
     background: #f5f5f5;
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
-	
 }
-.reg-next header{
-	height: 4.5rem;
-	width: 100%;
-	background: #0096ff;
+header{
+background-image: -webkit-gradient(linear, left top, right top, from(#0af), to(#0085ff));
+background-image: -webkit-linear-gradient(left, #0af, #0085ff);
+background-image: -o-linear-gradient(left, #0af, #0085ff);
+background-image: linear-gradient(90deg, #0af, #0085ff);
+width: 100%;
+height: 4.5rem;
 	padding:0 2em;
 	box-sizing: border-box;	
 	color: #fff;
 	font-size: 1.9rem;
 	line-height: 4.5rem;
 	font-size: 1.9rem;
-	 background-image: linear-gradient(90deg, #0af, #0085ff);
+	
 }
-.reg-next header>a>.iconfont{
+header>a>.iconfont{
 	font-size: 2.5rem;
 	color: #fff;
 }
-.reg-next header>a{
+header>a{
 	margin-right:2.3rem;
 }
-.reg-next header>a:nth-of-type(2){
+header>a:nth-of-type(2){
 	float: right;
 	color: #fff;
 	margin-right: 0;
 }
-.reg-next #main{
+#main{
 	width: 100%;
 	overflow:hidden;
 	padding-top: 1.3rem;
@@ -47,7 +45,7 @@ body{
 	background: #f5f5f5;
 	text-align: center;
 }
-.reg-next #main .prevnum{
+#main .prevnum{
 	width: 100%;
 	height:4.7rem;
 	border: 1px solid #eaeaea;
@@ -57,10 +55,10 @@ body{
 	display: flex;
 	position: relative;
 }
-.reg-next #main .prevnum{
+#main .prevnum{
 	border-top: none;
 }
-.reg-next #main .prevnum>input{
+#main .prevnum>input{
 	flex: 1;
 	border: none;
 	outline: none;
@@ -141,7 +139,7 @@ body{
 }
 #thirdlogin .loginchannel>ul>li{
 	flex: 1;
-	height: 6.3rem;
+	height: 7.3rem;
 }
 #thirdlogin .loginchannel>ul>li>a{
 	width: 100%;

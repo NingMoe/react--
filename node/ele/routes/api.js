@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var DB = require('../model/db');
 var bodyParser = require('body-parser');
-// var md5 = require('md5');
+var md5 = require('md5');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 var session = require('express-session');
@@ -111,9 +111,46 @@ router.get("/seller",function(req,res,next){
     })
 })//sellerapi
 //收藏
+//购买
+router.post("/buy",function(req,res,next){
+    console.log(req.body);
+    DB.InsertMore("orders",req.body.data,function(err,result){
+        if(err){
+            console.log(err);
+        }
+        res.json({result:"1"})
+    })
+})
+router.post("/order",function(req,res,next){
+    console.log(req.body);
+    var user=req.body.user[0].username;
+    var pws=req.body.user[1].password;
+    var sign=req.body.sign;
+    var sign1=md5(user+pws);
+    if(sign=sign1){
+        DB.Find("orders",{"user":user},function(err,result){
+            if(err){
+                console.log(err);
+            }
+            res.json(result);
+        })
+    }
 
+})
 
+router.post("/search",function(req,res,next){
 
+    var keyword=req.body.data
+   DB.Find("trade",{$or:[{"title":{ $regex:new RegExp(keyword)}},{"name":{ $regex:new RegExp(keyword)}}]},function(err,data){
 
+       if(data.length>0){
+           res.json(data)
+       }else {
+           res.json(404)
+       }
+
+   })
+
+})
 
 module.exports = router;

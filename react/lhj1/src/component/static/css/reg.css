@@ -1,9 +1,8 @@
-/*html{
+html{
     font-size:62.5%;
-	reg
-}*/
+}
 body{
-    /*font-size:1.2rem;*/
+    font-size:1.2rem;
     background: #f5f5f5;
     position: absolute;
     left: 0;
@@ -12,16 +11,19 @@ body{
     bottom: 0;
 }
 header{
-	height: 4.5rem;
-	width: 100%;
-	background: #0096ff;
+background-image: -webkit-gradient(linear, left top, right top, from(#0af), to(#0085ff));
+background-image: -webkit-linear-gradient(left, #0af, #0085ff);
+background-image: -o-linear-gradient(left, #0af, #0085ff);
+background-image: linear-gradient(90deg, #0af, #0085ff);
+width: 100%;
+height: 4.5rem;
 	padding:0 2em;
 	box-sizing: border-box;	
 	color: #fff;
 	font-size: 1.9rem;
 	line-height: 4.5rem;
 	font-size: 1.9rem;
-	 background-image: linear-gradient(90deg, #0af, #0085ff);
+	
 }
 header>a>.iconfont{
 	font-size: 2.5rem;
@@ -30,12 +32,15 @@ header>a>.iconfont{
 header>a{
 	margin-right:2.3rem;
 }
+header>a:nth-of-type(1){
+	float: left
+}
 header>a:nth-of-type(2){
 	float: right;
 	color: #fff;
 	margin-right: 0;
 }
-#main{
+#reg-main{
 	width: 100%;
 	overflow:hidden;
 	padding-top: 1.3rem;
@@ -43,7 +48,7 @@ header>a:nth-of-type(2){
 	background: #f5f5f5;
 	text-align: center;
 }
-#main .phone,#main .prevnum{
+#reg-main .phone,#reg-main .prevnum{
 	width: 100%;
 	height:4.7rem;
 	border: 1px solid #eaeaea;
@@ -52,15 +57,15 @@ header>a:nth-of-type(2){
 	box-sizing: border-box;
 	display: flex;
 }
-#main .prevnum{
+#reg-main .prevnum{
 	border-top: none;
 }
-#main .phone>input,#main .prevnum>input{
+#reg-main .phone>input,#reg-main .prevnum>input{
 	flex: 1;
 	border: none;
 	outline: none;
 }
-#main .phone #getprev{
+#reg-main .phone #getprev{
 	width: 10rem;
 	height: 4rem;
 	line-height: 4rem;
@@ -73,12 +78,12 @@ header>a:nth-of-type(2){
 	border-radius: 0.4rem;
 	align-self: center;
 }
-#main .prompt{
+#reg-main .prompt{
 	padding:1.7rem 1.3rem 2.7rem 1.3rem;
 	box-sizing: border-box;
 	line-height: 1.4rem;
 }
-#main .prompt>a{
+#reg-main .prompt>a{
 	color: #0088cc;
 }
 #nextstep{
@@ -135,9 +140,6 @@ header>a:nth-of-type(2){
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-}
-.reg-next{
-	display: block;
 }
 #thirdlogin .loginchannel>ul>li{
 	flex: 1;

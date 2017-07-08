@@ -4,17 +4,58 @@
 import React, { Component } from 'react';
 import {Link,browserHistory} from "react-router";
 import "./static/css/place_order.css";
-import  $ from "jquery"
+import  $ from "jquery";
+import  axios from "axios";
+import Storage from "./model/storage";
+
 class Place_order extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            user:"admin",
+            goods:""
         }
-this.href=this.href.bind(this)
+        this.href=this.href.bind(this);
+        this.buy=this.buy.bind(this)
     }
     href(){
         this.props.dom1()
+    }
+    buy(){
+        this.props.loading()
+        var collect=Storage.get("userinfo");
+        var arr=[];
+        var date=new Date()
+         date=date.toLocaleString();
+        this.props.goods.map((val,key)=>{
+            val.foods.map((val1,key1)=>{
+
+                if(val1.count>0){
+                    val1.user=collect[0].username;
+                    val1.serllId=this.props.id;
+                    val1.add_time=date;
+                    val1.title=this.props.seller.title
+                    console.log(val1);
+                    arr.push(val1);
+
+                }
+
+            })
+        })
+
+
+
+        axios.post('http://localhost:8000/api/buy',{
+            data:arr
+        }).then(function (response) {
+            if(response.data.result){
+                browserHistory.push(`/order`)
+            }
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
     componentDidMount(){
 
@@ -24,7 +65,7 @@ this.href=this.href.bind(this)
 
     }
     render() {
-        console.log(this.props.seller);
+
         return (
             <div className="place_order">
                 <div id="header">
@@ -149,7 +190,7 @@ this.href=this.href.bind(this)
                         <div className="money">
                             <span>¥{parseInt(this.props.money)+parseInt(this.props.seller.price.split(",")[1])+2}</span>
                         </div>
-                        <div className="Settlement">
+                        <div className="Settlement" onClick={this.buy}>
                             <span>  去结算</span>
                         </div>
                     </div>

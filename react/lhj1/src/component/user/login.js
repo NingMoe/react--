@@ -1,91 +1,94 @@
 import React, { Component } from 'react';
-import $ from "jquery";
-import {Link} from 'react-router';
-import "../../component/static/css/login.css"
-import "../static/css/login.css"
+import '../static/css/login.css';
+import axios from 'axios';
+import { browserHistory,useRouterHistory} from 'react-router';
+// import { createHistory } from 'history';
+// const history = createHistory();
 class Login extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-
-        }
+	constructor(props){
+		super(props)
+		this.state={
+			username:"",
+			password:""
+		}
+		this.goLogin=this.goLogin.bind(this);
+		this.getuserinfo = this.getuserinfo.bind(this)
+		this.backgo=this.backgo.bind(this)
+	}
+     componentDidMount(){
+         document.getElementsByTagName("html")[0].style.fontSize="62.5%"
     }
-    componentDidMount() {
+	backgo(){
+		browserHistory.goBack()
+		// const history = useRouterHistory(createHistory)({
+  		// 	basename: '/base-path'
+		// })
+		// alert('history')
+	}
+	getuserinfo(){
+		var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+		console.log(userinfo)	
+		if(userinfo!=null){
+			var username=userinfo[0].username;
+			var password=userinfo[1].password
+			this.setState({
+				username:username,
+				password:password
+			})
+		}
+	}
+	goLogin(){
+		var username = this.refs.username.value;
+		var password = this.refs.password.value;
+		console.log(username);
+		console.log(password);
+		var url = "http://127.0.0.1:8000/api/doLogin";
+		axios.post(url, {
+			phone:username,
+			password:password
+		})
+		.then(function (response) {
+			console.log(response);
+			if(response.data.status==0){
+				alert(response.data.msg)
+			}else{
+				alert(response.data.msg);
+				var userinfo = [{username:response.data.phone},{password:response.data.password}];
+				localStorage.setItem("userinfo",JSON.stringify(userinfo));
+				browserHistory.goBack();
+			}
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 
-        $("html").css("font-size","62.5%");
-        // require("../static/css/login.css")
-//         $("head").append(`<style type="text/css" class="login625">
-//          html{font-size: 62.5%!important}
-       
-// .footer{
-//     width: 100%;
-//     height: 4rem;
-//     background-color: #fff;
-//     -webkit-box-shadow: 0 -0.026667rem 0.053333rem rgba(0,0,0,.1);
-//     box-shadow: 0 -0.026667rem 0.053333rem rgba(0,0,0,.1);
-//     position: fixed;
-//     padding-top: .3rem;
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-//     z-index: 9999;
-//     color: #333;
-// }
-// .footer ul{
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     flex-direction: row;
-// }
-// .footer ul li{
-//     flex:1;
-  
-// }
-// .footer ul li a{
-//     height: 100%;
-//     display: block;
-//     display: flex;
-//      flex-direction: column;
-//     justify-content: center;
-//     align-items: center
-   
-// }
-// .footer ul li a i{
-//     font-size: 1.8rem;
-// }
-// .footer ul li a p{
-//     font-size: .7rem;
-//     transform: scale(.8);
-// }
-// .footer .active{
-//     color: #2395ff;
-// }
-//          </style>`)
-    }
+	}
+
     render() {
-        return (
-
-            <div className="login">
-                <header>
-                    <Link to="/user"><i className="iconfont">&#xe600;</i></Link>
-                        
-                    
-                    密码登录
+        return(
+            <div>
+               <header>
+			<a href="#" onClick={this.backgo}>
+			
+				<i className="iconfont">&#xe600;</i>
+			</a>
+			密码登录
 			<a href="#"></a>
-                </header>
-                <section id="main">
-                    <div className="phone">
-                        <input type="text" placeholder="手机号/邮箱/用户名" />
-                    </div>
-                    <div className="password">
-                        <input type="text" placeholder="密码" />
-                    </div>
-                    <button id="login">登录</button>
-                    <p className="forget"><a href="#">忘记密码？</a></p>
-                    <p className="forget"><Link to="reg">立即注册</Link></p>
-                </section>
-            </div>
+		</header>
+		<section id="login-main">
+			<div className="phone">
+			
+				<input type="text" placeholder="手机号/邮箱/用户名" ref="username" id="username"/>
+			</div>
+			<div className="password">
+				<input type="password" placeholder="密码" ref="password" />
+			</div>
+			<button id="login" onClick={this.goLogin}>登录</button>
+			<p className="forget"><a href="#">忘记密码？</a></p>
+		</section>
+            </div>        
         )
     }
 }
-export default Login
+
+export default Login;

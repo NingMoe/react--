@@ -100,6 +100,18 @@ exports.Insert=function(collectionName,json,callback){
         })
     })
 }
+exports.InsertMore=function(collectionName,json,callback){
+    _connect(function(err,db){
+        db.collection(collectionName).insertMany(json,function(err,result){
+            if(err){
+                console.log("增加失败");
+                return;
+            }
+            db.close();
+            callback(err,result)
+        })
+    })
+}
 
 //封装改函数
 exports.Updata=function(collectionName,id,json,callback){

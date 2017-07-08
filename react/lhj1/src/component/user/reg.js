@@ -1,86 +1,144 @@
-import React,{Component} from 'react' ;
-import "../static/css/reg.css";
-import $ from "jquery";
-import {Link} from 'react-router';
-class Reg extends Component{
- constructor(props){
-super(props)
-this.state={
+import React, { Component } from 'react';
+import axios from 'axios';
+import {Link,browserHistory} from 'react-router';
+import '../static/css/reg.css';
 
- }
-}
-    componentDidMount() {
-$("html").css("font-size","62.5%");
-
-        // require("../static/css/login.css")
-//         $("head").append(`<style type="text/css" class="login625">
-//          html{font-size: 62.5%!important}
-        
-// .footer{
-//     width: 100%;
-//     height: 4rem;
-//     background-color: #fff;
-//     -webkit-box-shadow: 0 -0.026667rem 0.053333rem rgba(0,0,0,.1);
-//     box-shadow: 0 -0.026667rem 0.053333rem rgba(0,0,0,.1);
-//     position: fixed;
-//     padding-top: .3rem;
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-//     z-index: 9999;
-//     color: #333;
-// }
-// .footer ul{
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     flex-direction: row;
-// }
-// .footer ul li{
-//     flex:1;
-  
-// }
-// .footer ul li a{
-//     height: 100%;
-//     display: block;
-//     display: flex;
-//      flex-direction: column;
-//     justify-content: center;
-//     align-items: center
-   
-// }
-// .footer ul li a i{
-//     font-size: 1.8rem;
-// }
-// .footer ul li a p{
-//     font-size: .7rem;
-//     transform: scale(.8);
-// }
-// .footer .active{
-//     color: #2395ff;
-// }
-//          </style>`)
+class Reg extends Component {
+	constructor(props){
+		super(props)
+		this.state={
+			num:"获取验证码",
+			disabled:"",
+			flag:false
+		}
+		this.getPhone= this.getPhone.bind(this);
+		this.nextstep = this.nextstep.bind(this);
+        this.back = this.back.bind(this)
+        this.blur = this.blur.bind(this)
+	}
+    componentDidMount(){
+	    document.getElementsByTagName("html")[0].style.fontSize="62.5%"
+        console.log(document.getElementsByTagName("html"));
+        if(document.getElementsByClassName("font625")[0]){
+			document.getElementsByClassName("font625")[0].remove()
+		}
     }
- render(){
-return (
-  <div className="reg">
-  	<header>
-			<Link to="user/login">
+    blur(){
+        var getphone = this.refs.getphone.value;
+        if(/^1[34578]\d{9}$/.test(getphone)){
+            document.getElementById("getprev").style.backgroundColor= "#2395ff";
+        }
+
+    }
+    back(){
+        browserHistory.goBack()
+    }
+	getPhone(){
+		var oSelf = this;
+		var count=60;
+		var getphone = this.refs.getphone.value;
+		console.log(getphone);
+		var timer="";
+
+		if(!(/^1[34578]\d{9}$/.test(getphone))){
+			alert('请输入正确的手机号码')
+
+		}else{
+
+			var url = "http://127.0.0.1:8000/api/doReg1";
+			axios.post(url, {
+				getphone
+			})
+			.then(function (response) {
+				var data =response.data.prevNum;
+				var newdata = sessionStorage.setItem("prevn",data);	
+				console.log(sessionStorage.getItem("prevn"))
+				if(response.data.status==0){
+					alert(response.data.msg);
+					timer=""	
+				}else{
+					 timer = setInterval(function(){
+					count--;
+					oSelf.setState({
+						num:count,
+						disabled:"disabled"
+					})
+					if(count==0){
+						clearInterval(timer);
+							oSelf.setState({
+								num:"重新获取",
+								disabled:""
+								
+							})
+							
+							sessionStorage.removeItem("prevn")
+							console.log(sessionStorage.getItem('prevn'))
+                        // document.getElementById("getprev").style.backgroundColor= "rgb(221, 221, 221)";
+
+					}
+
+					},300)
+				}
+			})
+			.catch(function (error) {
+				console.log(error)
+			})
+		}
+		
+	}
+
+	nextstep(){
+		var num = sessionStorage.getItem('prevn');
+		console.log(num)
+		var numbers = this.refs.numbers.value;
+		var getphone = this.refs.getphone.value;
+		var oSelf = this;
+		if(num!=numbers || num==null){
+			oSelf.setState({
+				flag:false
+			})			
+			alert('请输入正确的验证码')
+		}else{
+		    var path=`/user/reg2`
+		    browserHistory.push(path)
+			oSelf.setState({
+					flag:true
+			})
+		}
+	}
+
+    render() {
+		var selector=""
+			// if(this.state.flag==true){
+			// 	    selector=<Link to="/user/reg2"><button id="nextstep" onClick={this.nextstep}>下一步</button></Link>
+				// }else{
+				 	 selector=<button id="nextstep" onClick={this.nextstep}>下一步</button>
+				// }
+        return(
+            <div className="phone-reg">
+               <header>
+			<a href="#" onClick={this.back}>
 				<i className="iconfont">&#xe600;</i>
-			</Link>
+			</a>
 			注册
 			<a href="#">密码登录</a>
 		</header>
-		<section id="main">
+		<section id="reg-main">
 			<div className="phone">
-				<input type="text" placeholder="手机号"/><button id="getprev">获取验证码</button>
+				<input type="text" placeholder="手机号" ref="getphone" onBlur={this.blur}/><button id="getprev" onClick={this.getPhone} disabled={this.state.disabled}>{this.state.num}</button>
+			</div>
+			<div className="prevnum">
+				<input type="text" placeholder="验证码" ref="numbers"/>
 			</div>
 			<div className="prompt">
 				温馨提示：未注册饿了么帐号的手机号，登录时将自动注册，且代表您已同意<a href="#">《用户服务协议》</a>
 			</div>
-            <Link to="reg1" className="reg-next"><button id="nextstep">下一步</button></Link>
+			{
+			selector
+			}
 			
 		</section>
+		
 		<section id="thirdlogin">
 			<h5></h5>
 			<div className="loginchannel">
@@ -112,8 +170,9 @@ return (
 				</ul>
 			</div>
 		</section>
- </div>
- )
+            </div>        
+        )
+    }
 }
-}
-export default Reg
+
+export default Reg;

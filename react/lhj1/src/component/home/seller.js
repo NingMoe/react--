@@ -9,8 +9,8 @@ import data from "../static/json/seller.json";
 import Loading from "../loading";
 import Cart from "./cart";
 import Touch from "touchjs";
-import Place_order from "../place_order.js"
-
+import Place_order from "../place_order.js";
+import Storage from "../model/storage";
 
 class Seller extends Component {
     constructor(props) {
@@ -53,7 +53,7 @@ class Seller extends Component {
                     :
                     "595dcbb6d209da1fe888b0ab"},
             dom1:0,
-            id:1
+            id:1,
 
         }
         this.link=this.link.bind(this);
@@ -64,16 +64,22 @@ class Seller extends Component {
         this.buy=this.buy.bind(this);
         this.place=this.place.bind(this);
         this.loading=this.loading.bind(this);
+        this.hasCollect=this.hasCollect.bind(this);
+    }
+    hasCollect(){
+
 
     }
-
     place(){
         $(".place").addClass("none").removeClass("block");
         $(".block-place").addClass("block").removeClass("none")
     }
     buy(){
-      $(".place").addClass("block").removeClass("none");
-      $(".block-place").addClass("none").removeClass("block")
+
+        $(".place").addClass("block").removeClass("none");
+        $(".block-place").addClass("none").removeClass("block");
+
+
         // var _that=this
         // if($(".account").hasClass("account-active")){
         //     $(".account").click(function(){
@@ -171,6 +177,11 @@ class Seller extends Component {
         }
     }
     add(key){
+        var collect=Storage.get("userinfo");
+        if(collect==null){
+            browserHistory.push(`/user/login`);
+
+        }
         $(".goods-cart").addClass("goods-cart-active animated bounceIn infinite");
         setTimeout(function(){
             $(".goods-cart").removeClass("animated bounceIn infinite")
@@ -239,6 +250,8 @@ class Seller extends Component {
         this.setState({
             dom:<Loading/>
         })
+        this.hasCollect()
+
 
     }
     loading(){
@@ -308,13 +321,13 @@ class Seller extends Component {
 
 
     render() {
-        console.log(this.state.dom1);
+
 
                 return (
 
                     <div className='sellers'>
                         <div className="place">
-                            <Place_order seller={this.state.seller} goods={this.state.goods} dom1={this.place} id={this.state.id} money={this.state.money} loading={this.loading} all={this.all} ajax={this.ajax}/>
+                            <Place_order seller={this.state.seller} goods={this.state.goods} dom1={this.place} id={this.state.id} money={this.state.money} loading={this.loading} all={this.all} ajax={this.ajax} />
                         </div>
                        <div className="block-place">
                            {this.state.dom}

@@ -1,21 +1,22 @@
-/*html{
+html{
     font-size:62.5%;
-	login
-}*/
-/*body{
-    font-size:.12rem;
+}
+body{
+    font-size:1.2rem;
     background: #f5f5f5;
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
-}*/
-.login header{
-	 background-image: linear-gradient(90deg, #0af, #0085ff);
-	height: 4.5rem;
-	width: 100%;
-	/*background: #0096ff;*/
+}
+header{
+background-image: -webkit-gradient(linear, left top, right top, from(#0af), to(#0085ff));
+background-image: -webkit-linear-gradient(left, #0af, #0085ff);
+background-image: -o-linear-gradient(left, #0af, #0085ff);
+background-image: linear-gradient(90deg, #0af, #0085ff);
+width: 100%;
+height: 4.5rem;
 	padding:0 2em;
 	box-sizing: border-box;	
 	color: #fff;
@@ -23,19 +24,19 @@
 	line-height: 4.5rem;
 	font-size: 1.9rem;
 }
-.login header>a>.iconfont{
-	font-size: 2rem;
+header>a>.iconfont{
+	font-size: 2.5rem;
 	color: #fff;
 }
-.login header>a{
+header>a{
 	margin-right:2.3rem;
 }
-.login header>a:nth-of-type(2){
+header>a:nth-of-type(2){
 	float: right;
 	color: #fff;
 	margin-right: 0;
 }
-#main{
+#login-main{
 	width: 100%;
 	overflow: hidden;
 	padding-top: 1.3rem;
@@ -43,24 +44,24 @@
 	background: #f5f5f5;
 	text-align: center;
 }
-#main .phone,#main .password{
+#login-main .phone,#login-main .password{
 	width: 100%;
-	height:4.5rem;
+	height:4.7rem;
 	border: 1px solid #eaeaea;
 	background: #fff;
 	padding:0 0.7rem 0 1.3rem;
 	box-sizing: border-box;
 	display: flex;
 }
-#main .password{
+#login-main .password{
 	border-top: none;
 }
-#main .phone>input,#main .password>input{
+#login-main .phone>input,#login-main .password>input{
 	flex: 1;
 	border: none;
 	outline: none;
 }
-#main .phone #getprev{
+#login-main .phone #getprev{
 	width: 10rem;
 	height: 4rem;
 	line-height: 4rem;
@@ -84,19 +85,15 @@
 	border-radius: 0.6rem;
 	margin-top: 1.5rem;
 }
-#main .forget{
+#login-main .forget{
 	width: 100%;
 	margin-top: 2.3rem;
 	width: 90%;
 }
 
-#main .forget>a{
-	margin-bottom: 1.11rem;
+#login-main .forget>a{
 	color: #0088cc;
 	float: right;
-}
-#main .forget:nth-of-type(2)>a{
-	margin-right:.5rem; 
 }
 
 
@@ -180,7 +177,3 @@
 	color: #fd4702;
 	font-size: 4.8rem;
 }
-
-
-
-

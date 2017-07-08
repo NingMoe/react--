@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from "react-router";
+import {Link,IndexLink} from "react-router";
 import $ from "jquery";
 class Footer extends Component {
     constructor(props) {
@@ -17,10 +17,12 @@ class Footer extends Component {
             <div className='footer'>
                 <ul>
                     <li>
-                        <Link to="/home" activeClassName="active" onlyActiveOnIndex={true}>
+                        <IndexLink to="/home" activeClassName="active">
+                        {/*<Link to="/home" activeClassName="active" onlyActiveOnIndex={true}>*/}
                             <i className='iconfont'>&#xe639;</i>
                             <p>外卖</p>
-                        </Link>
+                        {/*</Link>*/}
+                        </IndexLink>
                     </li>
                     <li>
                         <Link to="/find" activeClassName="active">

@@ -7,10 +7,10 @@ import {Router,Route,Link,IndexRoute,browserHistory} from 'react-router'
 import Order from './component/order';
 import User from './component/user';
 import Collection from './component/user/collection';
-import Login from './component/user/login';
-import Reg from "./component/user/reg";
-import Reg1 from "./component/user/reg1";
-import Reg2 from "./component/user/reg2";
+import Login from './component/user/Login';
+import Reg from "./component/user/Reg";
+import Reg1 from "./component/user/Reg1";
+import Reg2 from "./component/user/Reg2";
 import Find from './component/find';
 import Search from './component/search';
 import Home from "./component/home";
