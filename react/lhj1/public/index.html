@@ -37,4 +37,59 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="../jquery.fly.min.js"></script>
+  <script>
+
+
+      var scrollTop=0;
+      $(window).scroll(function() {
+          scrollTop=$(window).scrollTop();
+      });
+
+      function addFly(event) {
+
+          var offset=$('.goods-cart').offset();
+
+          var data_gid = $('.goods-cart').attr('data-gid');
+           var flyer = $('<i class="anticon anticon-plus-circle" style="color: #3190e8;"></i>');
+          flyer.fly({
+              start: {
+                  left: event.pageX,
+                  top: event.pageY-scrollTop
+              },
+              end: {
+                  left: 20,
+                  top: $("body").height()-50,
+                  width: 0,
+                  height: 0,
+              },
+              onEnd: function(){
+
+
+                  flyer.remove();
+              }
+          });
+      }
+      $(function(){
+//          var num=parseInt($(".goods-cart-num").text())+1
+//          $(".anticon-plus-circle").click(function(event){
+//              addFly(event);
+//          })
+          $(window).load(function(){
+
+          })
+          $(".goods").on("click",$(".anticon-plus-circle"),function(event){
+//              event.stpPropagation()
+//              $(".goods-cart-num").show()
+//              $(".goods-cart-num").text(num++)
+
+              addFly(event);
+
+
+          })
+
+      })
+
+  </script>
 </html>

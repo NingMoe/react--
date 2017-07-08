@@ -1,0 +1,164 @@
+html {
+  /*font-size: 62.5%;*/
+  height: 100%;
+  position: relative;
+}
+body {
+  /*font-size: 1.2rem;*/
+}
+#header {
+  padding: 0 .16rem;
+  height: .5rem;
+  background: #2395ff;
+  display: -webkit-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#header .header-Return {
+  font-size: .16rem;
+  color: #fff;
+}
+#header .header-title {
+  margin-left: -.3rem;
+  color: #fff;
+  font-size: .16rem;
+}
+#main {
+  padding: 0.08rem 0.08rem 0 0.08rem;
+}
+.place-address {
+  background: #2395ff;
+  height: .65rem;
+  text-align: center;
+}
+.place-address .address-top {
+  line-height: .35rem;
+  font-size: .16rem;
+  color: #fff;
+}
+.place-address .Customer {
+  margin-left: .06rem;
+  font-size: .14rem;
+  color: #fff;
+}
+.Estimated-time {
+  background: #fff;
+}
+.Estimated-time .Estimated-time-top {
+  border-bottom: 1px solid #eeeeee;
+  height: .48rem;
+  line-height: .48rem;
+  background: #fff;
+  font-weight: bold;
+  font-size: .16rem;
+}
+.Estimated-time .Estimated-time-top span {
+  margin-left: .13rem;
+}
+.Payment-method {
+  height: .48rem;
+  line-height: .48rem;
+  background: #fff;
+  font-size: .16rem;
+}
+.Payment-method span {
+  font-weight: bold;
+  margin-left: .13rem;
+}
+.Order-information {
+  border-bottom: .01rem solid #f5f5f5;
+  border-top: .01rem solid #f5f5f5;
+  background: #fff;
+}
+.Order-information .Order-information-title {
+  background: #fff;
+  padding: 0 .14rem;
+  height: .4rem;
+  display: -webkit-flex;
+  flex-direction: row;
+  align-items: center;
+}
+.Order-information .Order-information-title img {
+  margin-right: .14rem;
+  width: .19rem;
+  height: .19rem;
+}
+.Order-information .Order-information-title span {
+  font-size: .18rem;
+}
+.Order-information-content {
+  padding: 0 .14rem;
+}
+.Order-information-content ul li {
+  border-top: 1px solid #eeeeee;
+  height: .4rem;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Order-information-content ul li div:nth-child(1) {
+  font-size: .16rem;
+}
+.Order-information-content ul .Package-name .num {
+  display: inline-block;
+  margin-right: .1rem;
+}
+.Order-note {
+  color: #999;
+  background: #fff;
+  padding: 0 .14rem;
+}
+.Order-note .Flavor {
+  color: #333;
+  height: .4rem;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Order-note .Flavor .Flavor-right {
+  color: #999;
+}
+.Order-note .invoice {
+  border-top: 1px solid #eeeeee;
+  height: .4rem;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+#footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+#footer .footer-inner {
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#footer .footer-inner .money {
+  display: -webkit-flex;
+  align-items: center;
+  height: .5rem;
+  -webkit-flex: 1;
+  background: #4e4e4e;
+}
+#footer .footer-inner .money span {
+  display: inline-block;
+  margin-left: .14rem;
+  font-size: .16rem;
+  color: #fff;
+}
+#footer .footer-inner .Settlement {
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+  height: .5rem;
+  width: 1.28rem;
+  background: #58d178;
+}
+#footer .footer-inner .Settlement span {
+  font-size: .16rem;
+  color: #fff;
+}

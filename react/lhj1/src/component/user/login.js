@@ -67,7 +67,7 @@ class Login extends Component {
 
             <div className="login">
                 <header>
-                    <Link to="user"><i className="iconfont">&#xe600;</i></Link>
+                    <Link to="/user"><i className="iconfont">&#xe600;</i></Link>
                         
                     
                     密码登录

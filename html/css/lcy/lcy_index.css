@@ -36,12 +36,10 @@ a {
   position: relative;
 }
 #header {
-  position: absolute;
-  top: 0;
   background-image: linear-gradient(90deg, #0af, #0085ff);
   width: 100%;
 }
-#header .header-inner {
+.header-inner {
   height: 5.5rem;
   display: -webkit-flex;
   justify-content: center;
@@ -49,32 +47,24 @@ a {
   flex-direction: row;
   text-align: center;
 }
-#header .header-inner .header-top {
+.header-inner .header-top {
   box-shadow: 0 0.026667rem 0.066667rem 0 rgba(0, 0, 0, 0.2);
   color: #666;
   width: 90%;
-  height: 3.7rem;
-  line-height: 3.7rem;
+  height: 3rem;
+  line-height: 3rem;
   background: #fff;
   border-radius: 30px;
   font-size: 1.4rem;
 }
-#header .header-inner .header-top i {
+.header-inner .header-top i {
   font-size: 1.5rem;
   font-weight: bold;
-}
-#footer {
-  background: #eeeeee;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  height: 5rem;
 }
 #main {
   width: 100%;
   background: #ffffff;
   overflow-y: auto;
-  margin-top: 5.5rem;
   margin-bottom: 5rem;
 }
 #main .swiper-pagination-bullets {

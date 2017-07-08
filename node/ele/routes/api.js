@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var DB = require('../model/db');
 var bodyParser = require('body-parser');
-var md5 = require('md5');
+// var md5 = require('md5');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 var session = require('express-session');
@@ -93,6 +93,14 @@ router.get('/indexseller', function(req, res, next) {
 
 router.get("/index",function(req,res,next){
     DB.Find("trade",{},function(err,data){
+        res.json({data})
+    })
+})//主页api
+router.get("/indexseller1",function(req,res,next){
+    var id=req.query.id;
+    // console.log(id);
+    DB.FindId("trade",id,function(err,data){
+        // console.log(data+"11");
         res.json({data})
     })
 })//主页api

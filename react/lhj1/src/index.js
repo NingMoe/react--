@@ -15,6 +15,7 @@ import Find from './component/find';
 import Search from './component/search';
 import Home from "./component/home";
 import Seller from "./component/home/seller";
+import Detail from "./component/detail";
 ReactDOM.render(
 <Router history={browserHistory}>
     <Route path="/" component={App}>
@@ -40,8 +41,10 @@ ReactDOM.render(
         <Route path="user/reg1" component={Reg1}></Route>
         <Route path="reg2" component={Reg2}></Route>
         <Route path="user/reg2" component={Reg2}></Route>
-          <Route path="seller" component={Seller}></Route>
+          <Route path="seller/:aid" component={Seller}></Route>
+        {/*<Route path="seller" component={Seller}></Route>*/}
            <Route path="search" component={Search}></Route>
+        <Route path="detail" component={Detail}></Route>
     </Route>
 </Router>, 
 document.getElementById('root')

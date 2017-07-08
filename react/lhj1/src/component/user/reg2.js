@@ -16,7 +16,7 @@ componentDidMount(){
 return (
   <div className="reg2">
   <header>
-			<Link to="reg1">
+			<Link to="user/reg1">
 				<i className="iconfont">&#xe600;</i>
 			</Link>
 			注册

@@ -1,19 +1,41 @@
 import React, { Component } from 'react';
 import "../component/static/css/lhj-index.css";
 import Swiper from "swiper";
-import {Link} from "react-router";
+import {Link,browserHistory} from "react-router";
 import $ from "jquery";
 import '../component/static/css/swiper.css';
-import Footer from "./footer"
+import Footer from "./footer";
+import Loading from "./loading";
+import { Rate } from 'antd';
+import axios from "axios"
 class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            arr:[]
         }
+        this.ajax=this.ajax.bind(this)
+        this.link=this.link.bind(this)
     } 
     componentWillMount(){
           $("html").css("font-size","625%");
+    }
+    link(){
+
+    }
+    ajax(){
+        var _that=this;
+        axios.get('http://localhost:8000/api/index')
+            .then(function (response) {
+                console.log(response.data.data);
+                _that.setState({
+                    arr:response.data.data.reverse()
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
     componentDidMount(){
          var mySwiper = new Swiper ('.swiper-container', {
@@ -27,19 +49,26 @@ class Home extends Component {
       require("./static/css/index.css");
       
             if($(".login625")){
-                console.log($(".login625"));
+
                 
                 for(var i=0;i<$(".login625").length+1;i++){
                     $(".login625").remove()
                 }
-            }
+            };
+
+        //请求数据
+        this.ajax();
+
+
     }
     render() {
+        console.log(this.state.arr);
         return (
          <div id='home'>
+             {/*<Loading/>*/}
                 <div className="header-warp">
                 <div className="header">
-                    <Link to="search" >
+                    <Link to="search" className="bk index-search">
                         <div className="search">
                         <from>
                             <input type="text" placeholder="搜索商家、商品" />
@@ -154,7 +183,7 @@ class Home extends Component {
                 </div>
             </div>
             <div className="banner">
-                <img src="img/lhj/banner.jpg" alt="" />
+                <img src={require("./static/img/banner.jpg")} alt="" />
             </div>
             <div className="nav">
                 <ul>
@@ -164,7 +193,7 @@ class Home extends Component {
                                 <h2>满20减10</h2>
                                 <b>广深大聚会</b>
                             </span>
-                            <img src="img/lhj/nav1.jpg" alt="" />
+                            <img src={require("./static/img/nav1.jpg")} alt="" />
                         </a>
                     </li>
                     <li>
@@ -173,7 +202,7 @@ class Home extends Component {
                                 <h2>满20减10</h2>
                                 <b>广深大聚会</b>
                             </span>
-                            <img src="img/lhj/nav1.jpg" alt="" />
+                            <img src={require("./static/img/nav1.jpg")} alt="" />
                         </a>
                     </li>
                     <li>
@@ -182,7 +211,7 @@ class Home extends Component {
                                 <h2>满20减10</h2>
                                 <b>广深大聚会</b>
                             </span>
-                            <img src="img/lhj/nav1.jpg" alt="" />
+                            <img src={require("./static/img/nav1.jpg")} alt="" />
                         </a>
                     </li>
                     <li>
@@ -191,7 +220,7 @@ class Home extends Component {
                                 <h2>满20减10</h2>
                                 <b>广深大聚会</b>
                             </span>
-                            <img src="img/lhj/nav1.jpg" alt="" />
+                            <img src={require("./static/img/nav1.jpg")} alt="" />
                         </a>
                     </li>
                 </ul>
@@ -200,50 +229,57 @@ class Home extends Component {
                 <div className="seller-header">
                     推荐商家
             </div>
-           <Link to="seller" className="seller-link">
-            
-                <div className="seller-content">
-                    <div className="seller-mark">
-                        <span>新店</span>
-                    </div>
-                    <div className="s-c-left">
-                        <img src="img/lhj/goods1.jpeg" alt="" />
-                    </div>
-                    <div className="s-c-right">
-                        <div className="s-c-r-t">
-                            <div className="seller-title">
-                                <span className="brand">品牌</span><h3>尊宝披萨(后瑞店)</h3>
-                            </div>
-                            <div className="assess">
-                                <div className="start"><img src="img/lhj/xx.png" alt="" />
-                                    <img src="img/lhj/xx.png" alt="" />
-                                    <img src="img/lhj/xx.png" alt="" />
-                                    <img src="img/lhj/xx.png" alt="" />
-                                    <img src="img/lhj/xx.png" alt="" /><span className="assess-num">4.5</span></div><strong>月售77单</strong>
-                            </div>
-                            <div className="price clear">
-                                <ul className="clear">
-                                    <li>¥30起送</li>
-                                    <li>配送费¥4</li>
-                                    <li>¥50/人</li>
-                                </ul>
-                                <b>1.19km</b>
+                {
 
+                    this.state.arr.map((val,key)=>{
+                        console.log(val);
+                        // return <Link to={{pathname:"seller",query:{"id":val._id}}} className="seller-link" key={key}>
+                           return <Link to={"/seller/"+val._id} className="seller-link" key={key}>
+                            <div className="seller">
+
+                                <div className="seller-content">
+                                    <div className="seller-mark">
+                                        <span>新店</span>
+                                    </div>
+                                    <div className="s-c-left">
+                                        <img src={"http://127.0.0.1:8000/"+(val.img.slice(6))} alt="" />
+                                    </div>
+                                    <div className="s-c-right">
+                                        <div className="s-c-r-t">
+                                            <div className="seller-title">
+                                                <span className="brand">品牌</span><h3 key={key}>{val.title}</h3>
+                                            </div>
+                                            <div className="assess">
+                                                    <div className="start"><Rate disabled defaultValue={parseInt(val.old_price.split(",")[0])} /><span className="assess-num">{val.old_price.split(",")[0]}</span></div><strong>月售{val.old_price.split(",")[1]}单</strong>
+                                            </div>
+                                            <div className="price clear">
+                                                <ul className="clear">
+                                                    <li>¥{val.price.split(",")[0]}起送</li>
+                                                    <li>配送费¥{val.price.split(",")[1]}</li>
+                                                    <li>¥{val.price.split(",")[2]}/人</li>
+                                                </ul>
+                                                <b>1.19km</b>
+
+                                            </div>
+
+                                        </div>
+                                        <div className="s-c-r-b">
+                                            <div className="seller-event-left">
+                                                <div className="seller-news">新用户下单立减17.0元</div>
+                                                <div className="seller-sub">满25减16，满50减25，满80减30</div>
+                                            </div>
+                                            <div className="seller-event-right">
+                                                三个活动
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                        </div>
-                        <div className="s-c-r-b">
-                            <div className="seller-event-left">
-                                <div className="seller-news">新用户下单立减17.0元</div>
-                                <div className="seller-sub">满25减16，满50减25，满80减30</div>
-                            </div>
-                            <div className="seller-event-right">
-                                三个活动
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </Link>
+                        </Link>
+                    })
+                }
+
                 
             </div>
              <Footer/>

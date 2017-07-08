@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './component/static/css/antd.css';
 import "./component/static/css/reset.css";
 import "./component/static/css/common.css";
 import $ from "jquery";

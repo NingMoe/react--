@@ -444,24 +444,24 @@ html {
 .account-active {
   background-color: #4cd964;
 }
-.goods-footer .goods-cart-active {
+.goods-footer .goods-footer .goods-cart-active {
   background-color: #3190e8;
 }
-.goods-cart-active:before {
-  content: "1";
-  background-color: #ff461d;
-  border-radius: 50%;
-  font-size: .1rem;
-  color: #fff;
-  width: .12rem;
-  height: .12rem;
-  position: absolute;
-  right: 0rem;
-  top: -0.1rem;
-  text-align: center;
-  line-height: .12rem;
-  display: block;
-}
+/*.goods-cart-active:before {*/
+  /*content: "1";*/
+  /*background-color: #ff461d;*/
+  /*border-radius: 50%;*/
+  /*font-size: .1rem;*/
+  /*color: #fff;*/
+  /*width: .12rem;*/
+  /*height: .12rem;*/
+  /*position: absolute;*/
+  /*right: 0rem;*/
+  /*top: -0.1rem;*/
+  /*text-align: center;*/
+  /*line-height: .12rem;*/
+  /*display: block;*/
+/*}*/
 .goods-cart-active:after {
   content: " ";
   position: absolute;
