@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './static/css/user.css';
-import {Link} from 'react-router';
-import Footer from "./footer"
+import {Link,browserHistory} from 'react-router';
+import Footer from "./footer";
+import Collect from "./collect"
 class User extends Component {
 
     constructor(props){
@@ -11,6 +12,7 @@ class User extends Component {
             username:"",
             userphone:""
         }
+        this.quite=this.quite.bind(this)
     }
     componentDidMount(){
         var head=document.getElementsByTagName("head");
@@ -64,7 +66,14 @@ class User extends Component {
         head[0].appendChild(style);
         this.userstatus();
     }
+    quite(){
+        console.log(111);
+        localStorage.removeItem("userinfo")
+        // browserHistory.push(`user/quite`)
+        // window.location.href="http://localhost:3000/user"
+    window.location.reload()
 
+    }
     userstatus(){
         var userinfo = JSON.parse(localStorage.getItem('userinfo'));
         console.log(userinfo)
@@ -89,8 +98,8 @@ class User extends Component {
             <div>
                 <div className="u_header">
                     <h2>我的
-                        <i className="iconfont">&#xe77e;</i>
-                        <i className="iconfont" onClick={}>&#xe65a;</i>
+                        <i className="iconfont" onClick={this.quite}>&#xe77e;</i>
+                        <i className="iconfont" >&#xe65a;</i>
                     </h2>
                 </div>
                 <div className="user_info">
@@ -153,8 +162,11 @@ class User extends Component {
                             <a>收货地址</a>
                         </li>
                         <li>
-                            <i className="iconfont">&#xe68d;</i>
-                            <a>我的收藏</a>
+                            <Link to="user/collect" className="user-collect">
+                                <i className="iconfont">&#xe68d;</i>
+                                <a>我的收藏</a>
+                            </Link>
+
                         </li>
                     </ul>
                 </div>

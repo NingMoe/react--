@@ -47,6 +47,7 @@ exports.Find=function(collectionName,json,callback){
         })
     })
 }
+
 exports.findMore=function (collectionName, json, skipnumber, limit,callback) {
 
 
@@ -131,6 +132,19 @@ exports.Updata=function(collectionName,id,json,callback){
 exports.Delete=function(collectionName,id,callback){
     _connect(function(err,db){
         db.collection(collectionName).deleteOne({"_id":new objectId(id)},function(err,result){
+            if(err){
+                console.log('删除失败');
+                return;
+            }
+            db.close();
+            callback(err,result)
+        })
+    })
+}
+
+exports.delete=function(collectionName,id,callback){
+    _connect(function(err,db){
+        db.collection(collectionName).deleteOne(id,function(err,result){
             if(err){
                 console.log('删除失败');
                 return;

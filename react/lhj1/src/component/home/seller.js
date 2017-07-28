@@ -54,6 +54,7 @@ class Seller extends Component {
                     "595dcbb6d209da1fe888b0ab"},
             dom1:0,
             id:1,
+            collect:false
 
         }
         this.link=this.link.bind(this);
@@ -65,6 +66,66 @@ class Seller extends Component {
         this.place=this.place.bind(this);
         this.loading=this.loading.bind(this);
         this.hasCollect=this.hasCollect.bind(this);
+        this.collect=this.collect.bind(this);
+        this.hascollect=this.hascollect.bind(this)
+    }
+    hascollect(){
+        var _that=this
+        var id=this.props.params.aid;
+        var user=Storage.get("userinfo")[0].username;
+        axios.get('http://localhost:8000/api/collect?id='+id+'&user='+user)
+            .then(function(response){
+                console.log(response.data.result);
+                if(response.data.result==1){
+                    _that.setState({
+                        collect:true
+                    })
+                }else{
+                    _that.setState({
+                        collect:false
+                    })
+                }
+            })
+            .catch(function(error){
+
+            })
+    }
+    collect(){
+        var _that=this;
+        var id=this.props.params.aid;
+        var user=Storage.get("userinfo")[0].username;
+       var date=new Date()
+        date=date.toLocaleString();
+        if(user!=undefined){
+
+            if($(".menu-r").find(".anticon").hasClass("anticon-star-o")){
+                axios.get('http://localhost:8000/api/addcollect?id='+id+'&user='+user+"&time="+date)
+                    .then(function(response){
+                        if(response.data.result==1){
+                            _that.setState({
+                                collect:true
+                            })
+                        }
+                    })
+                    .catch(function(error){
+
+                    })
+            }else{
+                axios.get('http://localhost:8000/api/deletecollect?id='+id+'&user='+user)
+                    .then(function(response){
+                        if(response.data.result==1){
+                            _that.setState({
+                                collect:false
+                            })
+                        }
+                    })
+                    .catch(function(error){
+
+                    })
+            }
+
+        }
+
     }
     hasCollect(){
 
@@ -251,7 +312,7 @@ class Seller extends Component {
             dom:<Loading/>
         })
         this.hasCollect()
-
+        this.hascollect()
 
     }
     loading(){
@@ -285,6 +346,7 @@ class Seller extends Component {
         })
     }
     componentDidMount() {
+
         $(".place").addClass("none")
         this.loading()
         var id=this.props.params.aid;
@@ -321,7 +383,14 @@ class Seller extends Component {
 
 
     render() {
+        var collect=""
+        console.log(this.state.collect);
+        if(this.state.collect==false){
 
+            collect=<Icon type="star-o" />
+        }else{
+            collect=<Icon type="star" />
+        }
 
                 return (
 
@@ -341,9 +410,12 @@ class Seller extends Component {
                                                <i className="iconfont">&#xe600;</i>
                                            </div>
                                        </Link>
-                                       <div className="menu-r">
+                                       <div className="menu-r" onClick={this.collect}>
                                            <i className="iconfont cart" >&#xe63f;</i>
-                                           <i className="iconfont">&#xe65c;</i>
+
+                                           {
+                                               collect
+                                           }
                                        </div>
                                    </div>
                                    <div className="header-content">
@@ -415,7 +487,7 @@ class Seller extends Component {
 
                                    </ul>
                                </div>
-                               <div className="goods">
+                               <div className="goods" >
                                    {
                                        this.state.goods.map((val,key2)=>{
 

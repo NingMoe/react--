@@ -2,6 +2,12 @@
   font-size: 625%;
   common
 }*/
+.address ul li .user-collect{
+display:block;
+}
+body .anticon.anticon-star-o{
+float:none;
+}
 /*search*/
 .App .search-content a{
 margin: .03rem 0.15rem;

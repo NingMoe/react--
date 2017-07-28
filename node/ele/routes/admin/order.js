@@ -29,12 +29,12 @@ router.get('/', function(req, res, next) {
     db.findMore("orders",{},count1,listLenght,function(err,data){
         // console.log(Math.ceil(_length/5));
         // console.log(data);
-        res.render("./admin/order/index",{
-            host:HOST,
-            data:data,
-            alength:Math.ceil(_length/listLenght),
-            count:count
-        })
+            res.render("./admin/order/index",{
+                host:HOST,
+                data:data,
+                alength:Math.ceil(_length/listLenght),
+                count:count
+            })
     })
 
 

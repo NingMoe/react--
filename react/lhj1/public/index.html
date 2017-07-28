@@ -41,55 +41,60 @@
   <script src="../jquery.fly.min.js"></script>
   <script>
 
+    window.onload=function(){
+        var scrollTop=0;
+        $(window).scroll(function() {
+            scrollTop=$(window).scrollTop();
+        });
 
-      var scrollTop=0;
-      $(window).scroll(function() {
-          scrollTop=$(window).scrollTop();
-      });
+        function addFly(event) {
 
-      function addFly(event) {
+            var offset=$('.goods-cart').offset();
 
-          var offset=$('.goods-cart').offset();
-
-          var data_gid = $('.goods-cart').attr('data-gid');
-           var flyer = $('<i class="anticon anticon-plus-circle" style="color: #3190e8;"></i>');
-          flyer.fly({
-              start: {
-                  left: event.pageX,
-                  top: event.pageY-scrollTop
-              },
-              end: {
-                  left: 20,
-                  top: $("body").height()-50,
-                  width: 0,
-                  height: 0,
-              },
-              onEnd: function(){
-
-
-                  flyer.remove();
-              }
-          });
-      }
-      $(function(){
-//          var num=parseInt($(".goods-cart-num").text())+1
-//          $(".anticon-plus-circle").click(function(event){
-//              addFly(event);
-//          })
-          $(window).load(function(){
-
-          })
-          $(".goods").on("click",$(".anticon-plus-circle"),function(event){
-//              event.stpPropagation()
-//              $(".goods-cart-num").show()
-//              $(".goods-cart-num").text(num++)
-
-              addFly(event);
+            var data_gid = $('.goods-cart').attr('data-gid');
+            var flyer = $('<i class="anticon anticon-plus-circle" style="color: #3190e8;"></i>');
+            flyer.fly({
+                start: {
+                    left: event.pageX,
+                    top: event.pageY-scrollTop
+                },
+                end: {
+                    left: 20,
+                    top: $("body").height()-50,
+                    width: 0,
+                    height: 0,
+                },
+                onEnd: function(){
 
 
-          })
+                    flyer.remove();
+                }
+            });
+        }
+        $(function(){
+            //          var num=parseInt($(".goods-cart-num").text())+1
+            //          $(".anticon-plus-circle").click(function(event){
+            //              addFly(event);
+            //          })
+            $(window).load(function(){
 
-      })
+            })
+//            console.log($(".add-cart"));
+            $(".goods").on("click",$(".anticon-plus-circle"),function(event){
+                console.log(event);
+                event.stopPropagation()
+                //              event.stpPropagation()
+                //              $(".goods-cart-num").show()
+                //              $(".goods-cart-num").text(num++)
+
+                addFly(event);
+
+
+            })
+
+        })
+    }
+
 
   </script>
 </html>

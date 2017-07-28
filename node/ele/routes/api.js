@@ -152,5 +152,47 @@ router.post("/search",function(req,res,next){
    })
 
 })
+//sc
+router.get("/addcollect",function(req,res,next){
+    var id=req.query.id;
+    var user=req.query.user;
 
+    DB.Insert("collect",req.query,function(err,data){
+
+            res.json({"result":1})
+
+    })
+})
+router.get("/deletecollect",function(req,res,next){
+    DB.delete("collect",req.query,function(err,data){
+        res.json({"result":1})
+    })
+})
+router.get("/collect",function(req,res,next){
+
+    DB.Find("collect",req.query,function(err,data){
+
+        if(data.length>0){
+            res.json({"result":1,"data":data})
+        }else{
+            res.json({"result":0,"data":data})
+        }
+    })
+})
+router.get("/allcollect",function(req,res,next){
+    console.log(req.query.arr);
+    var collectArr=JSON.parse(req.query.arr)
+    var arr=[]
+   for(var i=0;i<collectArr.length;i++){
+       console.log(collectArr[i]);
+       DB.FindId("trade",collectArr[i],function(err,data){
+           arr.push(data);
+
+
+       })
+       res.json({"arr":arr})
+   }
+
+
+})
 module.exports = router;
