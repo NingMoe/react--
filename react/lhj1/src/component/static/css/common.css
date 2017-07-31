@@ -227,6 +227,15 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
+.anticon.anticon-star-o{
+  font-size: .2rem;
+}
+.anticon.anticon-star{
+  font-size: .2rem;
+}
+.place-address{
+  display: none;
+}
 .load-top{
 background: url("../img/loading.png") no-repeat;
 width:.5rem;

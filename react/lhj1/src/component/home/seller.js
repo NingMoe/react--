@@ -72,7 +72,9 @@ class Seller extends Component {
     hascollect(){
         var _that=this
         var id=this.props.params.aid;
-        var user=Storage.get("userinfo")[0].username;
+        if(Storage.get("userinfo")){
+            var user=Storage.get("userinfo")[0].username;
+        }
         axios.get('http://localhost:8000/api/collect?id='+id+'&user='+user)
             .then(function(response){
                 console.log(response.data.result);
@@ -93,7 +95,10 @@ class Seller extends Component {
     collect(){
         var _that=this;
         var id=this.props.params.aid;
-        var user=Storage.get("userinfo")[0].username;
+        if(Storage.get("userinfo")){
+var user=Storage.get("userinfo")[0].username;
+        }
+        
        var date=new Date()
         date=date.toLocaleString();
         if(user!=undefined){

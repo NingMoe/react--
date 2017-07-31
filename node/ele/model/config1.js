@@ -3,7 +3,7 @@
  */
 var config={
     HOST:'http://localhost:8000/',
-    dbUrl:'mongodb://10.36.132.4:27017/hdl'
+    dbUrl:'mongodb://10.36.132.134:27017/eleData'
 }
 
 exports.config=config;

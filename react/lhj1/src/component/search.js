@@ -49,7 +49,7 @@ class Search extends Component {
     }
     search(){
       var _that=this
-        if(this.refs.input.value!=""){
+        if(this.refs.input.value!=""&&this.refs.input.value!=null){
           var his=Storage.get("his")
             console.log(his);
             if(Storage.get("his")!=undefined){
